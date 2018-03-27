@@ -54,6 +54,7 @@
             from browser import *
             from browser.local_storage import storage
             from _core.main import Main
+            import abacaxi
             class MockBrython:
                 document = document
                 html = html

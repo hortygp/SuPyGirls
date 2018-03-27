@@ -42,17 +42,39 @@
         """
 
         -->
+        <script type="text/python">
+            from browser import *
+            from browser.local_storage import storage
+            from _core.main import Game
+            import abacaxi
+            class MockBrython:
+                document = document
+                html = html
+                alert = alert
+                storage = storage
+            main = Game(br=MockBrython)
+            main.paint_scenes()
+       </script>
     </head>
-    <body onLoad="brython({debug:1, cache:'browser', static_stdlib_import:true})">
-           <div id="pydiv"  title="" style="width: {{ dx }}px;
-    height: {{ dy }}px;
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;">
-                <span style="color:white">LOADING..</span>
-           </div>
+    <body onLoad="brython({debug:1, cache:'browser', static_stdlib_import:true, pythonpath :['_spy','_vit/{{mod}}']})">
+        <div id="pydiv"  title="" style="width: 99%;
+            height: 99%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-color: forestgreen;
+        ">
+            <div style="position: absolute; top=0; left=0;">
+                <img src="image/sky.gif"/>
+            </div>
+            <div id='the_sun' style="position: absolute; top=0; left=0;
+             animation-name: daylight; animation-duration: 300s">
+                <img src="image/sun.gif"/>
+            </div>
+        </div>
     </body>
+
 </html>

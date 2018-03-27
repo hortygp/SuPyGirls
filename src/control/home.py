@@ -2,7 +2,7 @@ from bottle import get, run, view, TEMPLATE_PATH, Bottle, static_file
 import os.path
 from . import code_controller
 from . import static_controller
-from . import py_dir
+from . import py_dir, vitpy_dir
 
 # Create a new list with absolute paths
 TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../view/tpl')))
@@ -29,6 +29,14 @@ def index():
 def py(filepath):
     print("py(filepath):", filepath, py_dir)
     return static_file(filepath, root=py_dir)
+
+
+# Static Routes
+@get("/_vit/<modulepath:re:.*>/<filepath:re:.*\.py>")
+def vitpy(modulepath, filepath):
+    print("py(filepath):", modulepath, filepath, vitpy_dir)
+    return static_file(filepath, root=vitpy_dir)
+    # return static_file("{}/{}".format(modulepath, filepath), root=vitpy_dir)
 
 
 if __name__ == "__main__":
